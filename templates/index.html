@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pweb2 - SQLite</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Buscador de películas con SQLite</h1>
+
+    <form id="formulario-busqueda">
+        <select id="tabla" name="tabla">
+            <option value="Movie">Película</option>
+            <option value="Actor">Actor</option>
+            <option value="Casting">Casting</option>
+        </select>
+
+        <select id="campo" name="campo">
+        </select>
+
+        <input type="text" id="valor" name="valor" placeholder="Ingrese su búsqueda">
+
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
