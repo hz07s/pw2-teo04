@@ -29,3 +29,37 @@ function actualizarCampoOptions() {
         campoSelect.appendChild(option);
     });
 }
+
+function buscar() {
+    var formData = new FormData(document.getElementById('formulario-busqueda'));
+    
+    fetch('/buscar', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        var resultado = document.getElementById('resultado');
+        resultado.innerHTML = '';
+    
+        if (data.error) {
+            resultado.innerHTML = 'Error: ' + data.error;
+        } else {
+            var table = document.createElement('table');
+            table.className = 'result-table';
+            
+            data.forEach(item => {
+                var row = document.createElement('tr');
+                Object.values(item).forEach(value => {
+                    var td = document.createElement('td');
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                table.appendChild(row);
+            });
+    
+            resultado.appendChild(table);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
