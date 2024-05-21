@@ -2,3 +2,7 @@ document.getElementById('formulario-busqueda').addEventListener('submit', functi
     event.preventDefault();
     buscar();
 });
+
+document.getElementById('tabla').addEventListener('change', function() {
+    actualizarCampoOptions();
+});
