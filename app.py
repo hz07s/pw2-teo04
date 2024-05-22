@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+import sqlite3
 
 app = Flask(__name__)
 
@@ -11,7 +12,15 @@ def buscar():
     tabla = request.form['tabla']
     campo = request.form['campo']
     valor = request.form['valor']
-    return jsonify({'tabla': tabla, 'campo': campo, 'valor': valor})
+
+    conn = sqlite3.connect('imdb.db')
+    cursor = conn.cursor()
+    query = f"SELECT * FROM {tabla} WHERE {campo} = ?"
+    cursor.execute(query, (valor,))
+    data = cursor.fetchall()
+    conn.close()
+
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
