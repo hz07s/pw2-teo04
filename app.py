@@ -15,7 +15,13 @@ def buscar():
 
     conn = sqlite3.connect('imdb.db')
     cursor = conn.cursor()
-    query = f"SELECT * FROM {tabla} WHERE {campo} = ?"
+
+    if campo in ['Year', 'Score', 'Votes']:
+        valor = float(valor)
+        query = f"SELECT * FROM {tabla} WHERE {campo} >= ?"
+    else:
+        query = f"SELECT * FROM {tabla} WHERE {campo} = ?"
+
     cursor.execute(query, (valor,))
     data = cursor.fetchall()
     conn.close()
