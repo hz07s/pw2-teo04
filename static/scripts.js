@@ -63,3 +63,5 @@ function buscar() {
     })
     .catch(error => console.error('Error:', error));
 }
+
+actualizarCampoOptions();
