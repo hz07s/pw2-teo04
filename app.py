@@ -14,7 +14,7 @@ def buscar():
         campo = request.form['campo']
         valor = request.form['valor']
 
-        conn = sqlite3.connect('imdb.db')
+        conn = sqlite3.connect('imdb_db')  # Simulación de error: nombre incorrecto de la base de datos
         cursor = conn.cursor()
 
         if tabla == 'Casting':
