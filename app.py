@@ -32,7 +32,7 @@ def buscar():
                 query = f"SELECT * FROM {tabla} WHERE {campo} = ?"
         
         if campo in ['Year', 'Score', 'Votes']:
-            valor = int(valor)  # Simulación de error: intentando convertir a entero en lugar de flotante
+            valor = float(valor)
 
         cursor.execute(query, (valor,))
         data = cursor.fetchall()
